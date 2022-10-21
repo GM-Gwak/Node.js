@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>코로나 현황2</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Free singlepage web template created by GraphBerry">
+    <meta name="keywords" content="HTML5, Bootstrap 3, CSS3, javascript, PHP, Responsive, Mobile">
+    <meta name="author" content="GraphBerry.com" />
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+        integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Crimson+Text:400,400i" rel="stylesheet">
+    <!-- Styles -->
+    <link rel="stylesheet" type="text/css" href="static/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="static/css/slick.css">
+    <link rel="stylesheet" type="text/css" href="static/css/style.css">
+    
+</head>
+
+<body>
+
+    <header id="header">
+
+        <!-- Section title -->
+        <h1 class="sr-only">코로나</h1>
+
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <!-- Section title -->
+            <h1 class="sr-only">Main navigation</h1>
+
+            <div class="container">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                        data-target="#main-navbar" aria-expanded="false">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand smoothScroll" href="http://localhost:5000">
+                        <img alt="Modus" src="img/lona2.png">
+                    </a>
+                </div>
+
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                
+            </div><!-- /.container -->
+        </nav>
+
+    </header>
+
+    <!-- Scripts -->
+	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+	<script type="text/javascript" src="static/js/smooth-scroll.min.js"></script>
+	<script type="text/javascript" src="static/js/modernizr.mq.js"></script>
+	<script type="text/javascript" src="static/js/slick.min.js"></script>
+
+	<!-- Latest compiled and minified JavaScript Bootstrap-->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+	<!-- Custom JS -->
+	<script src="static/js/custom.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+    
+</body>
+<main>
+    <section id="clients">
+
+        <!-- Section title -->
+        <h1 class="sr-only">Clients section</h1>
+
+    <div class="container">
+
+        <div class="row">
+
+            <div class="col-md-8">
+
+                <div class="clients-content">
+    
+                    <h1>&emsp;&emsp;&emsp;&emsp;&emsp; 서울 백신 접종 현황 </h1>
+                    <br>
+                    <br>
+                    <div class="container">
+                        <div class="row my-2">
+                            <div class="col-md-6">
+                                <div class="card" style="position: relative; height:600px; width:1000px;">
+                                    <div class="card-body">
+                                        <canvas class="myChart"></canvas>
+                                    </div>
+                                    <div class="card-body text-center text-align-center">
+                                        <h3>서울시</h3>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+                        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+                        crossorigin="anonymous"></script>
+                    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+                        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+                        crossorigin="anonymous"></script>
+                    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+                        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+                        crossorigin="anonymous"></script>
+                    
+                    <script type="text/javascript">
+                        
+                        var data = <%- JSON.stringify(data) %>//javascript로 값을 받아와야함
+                        console.log();
+                
+                        //데이터 입력 부분
+                        let mydata= new Array();
+                        for(let i=0; i<data.length;i++){
+                            mydata[i]=data[i].vac_per.replaceAll(',','')
+                        }//바 그래프 데이터
+                        const mydataHalf=[data[0].vac_new, data[1].vac_new, data[2].vac_new, data[3].vac_new];//선 그래프 데이터
+                
+                        var ctx=document.getElementsByClassName('myChart');
+                
+                        var mixedChart={
+                            type:'bar',
+                            labels:['1차','2차','3차','4차'],
+                            datasets:[
+                            {
+                                label:'접종자',
+                                data:mydata,
+                                backgroundColor:'rgba(256, 0, 0, 0.1)',
+                                yAxisID:'left-y-axis'
+                            },
+                            {
+                                label:'신규 접종자',
+                                data:mydataHalf,
+                                backgroundColor:'transparent',
+                                borderColor:'skyblue',
+                                type:'line',
+                                yAxisID:'right-y-axis'
+                            }
+                            ]
+                        };
+                        var myChart=new Chart(ctx,{
+                            type:'bar',
+                            data:mixedChart,
+                            options:{
+                                legend:{
+                                    display:true
+                                },
+                                scales:{
+                                    yAxes: [{
+                                        id: 'left-y-axis',
+                                        type: 'linear',
+                                        position: 'left'
+                                    }, {
+                                        id: 'right-y-axis',
+                                        type: 'linear',
+                                        position: 'right'
+                                    }]
+                                }
+                            }
+                        });
+                    </script>
+                    <br>
+                    <br>
+                    <table class="table table-striped table-hover" border="1">
+                        <tr class="danger">
+                            <td>차수</td>
+                            <td>접종자</td>
+                            <td>신규</td>
+                            <td>접종률</td>    
+                        </tr>
+                        <% for (var i=0; i<data.length; i++){%>
+                            <tr>
+                            <td><%= data[i].vac_degree%></td>
+                            <td><%= data[i].vac_per%>명</td>
+                            <td><%= data[i].vac_new%>명</td>
+                            <td><%= data[i].vac_ratio%></td>
+                             </tr>
+                        <% }%>
+                    </table>
+                        
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            
+
+        </div>
+
+    </section>
+</main>
+
+</html>
