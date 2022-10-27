@@ -1,0 +1,45 @@
+h2#board_title{
+    margin-top:20px;
+    padding: 0 0 5px 0;
+}
+#write_title{
+    text-align: center;
+    margin:10px 0 0 0;
+    padding: 5px;
+    background-color: #eeeeee;
+    border-top:solid 2px #42779f;
+    border-bottom: solid 1px #bbbbbb;
+}
+table{
+    border-collapse: collapse;
+    margin: 0 auto;
+    width: 100%;
+}
+
+td{
+    padding: 10px;
+    border-bottom: solid 1px #eb1342;
+}
+td.col1{
+    width: 150px;
+    text-align: center;
+    border-right: solid 1px #1111a3;
+}
+td.col2{
+    padding: 5px 0 0 10px;
+}
+#name input{
+    width: 100px;
+    height: 16px;
+    border: solid 1px #00ba2e;
+}
+#title input{
+    width: 550px;
+    height: 16px;
+    
+}
+#content textarea{
+    width: 550px;
+    height: 200px;
+    margin: 5px 5px 5px 0;
+}
